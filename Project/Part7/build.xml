@@ -1,0 +1,39 @@
+<?xml version= "1.0"?>
+    <project name = "Test" basedir = "." default = "RunnerDemo">
+    	<path id = "compile.path">
+    		<fileset dir = "./jigsaw">
+    			<include name = "**/*.java"/>
+    		</fileset>
+    	</path>
+
+    	<path id = "run.path">
+    		<fileset dir = "./Runners">
+    			<include name = "**/*.class"/>
+                <include name = "**/*.java"/>
+    		</fileset>
+    	</path>
+
+    	<target name = "clean">
+    		<delete dir = "build"/>
+    	</target>
+
+    	<target name = "compile">
+    		<javac srcdir = "./jigsaw" destdir = "./" classpathref = "compile.path"/>
+            <javac srcdir = "./Runners" destdir = "./" classpathref = "compile.path"/>
+    	</target>
+
+		<target name = "RunnerDemo" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "RunnerDemo"/>
+		</target>
+
+        <target name = "RunnerPart1" depends = "compile">
+            <java fork = "true" failonerror = "yes" classname = "RunnerPart1"/>
+        </target>
+
+        <target name = "RunnerPart2" depends = "compile">
+            <java fork = "true" failonerror = "yes" classname = "RunnerPart2"/>
+        </target>
+
+</project>
+
+	

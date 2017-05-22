@@ -1,0 +1,77 @@
+<?xml version= "1.0"?>
+    <project name = "Test" basedir = "." default = "SparseGridRunner">
+    	<path id = "compile.path">
+    		<fileset dir = ".">
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    		<pathelement path = "Part4/ChameleonCritterRunner"/>
+    		<pathelement path = "Part4/ChameleonKidRunner"/>
+    		<pathelement path = "Part4/RockHoundRunner"/>
+    		<pathelement path = "Part4/BlusterCritterRunner"/>
+    		<pathelement path = "Part4/QuickCrabRunner"/>
+    		<pathelement path = "Part4/KingCrabRunner"/>
+    		<pathelement path = "Part5/SparseGridRunner"/>
+    	</path>
+
+    	<target name = "compile">
+    		<javac srcdir = "Part4/ChameleonCritterRunner" destdir = "Part4/ChameleonCritterRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part4/ChameleonKidRunner" destdir = "Part4/ChameleonKidRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part4/RockHoundRunner" destdir = "Part4/RockHoundRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part4/BlusterCritterRunner" destdir = "Part4/BlusterCritterRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part4/QuickCrabRunner" destdir = "Part4/QuickCrabRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part4/KingCrabRunner" destdir = "Part4/KingCrabRunner" classpathref = "compile.path"/>
+    		<javac srcdir = "Part5/SparseGridRunner" destdir = "Part5/SparseGridRunner" classpathref = "compile.path"/>
+    	</target>
+
+		<target name = "ChameleonCritterRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "ChameleonRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "ChameleonKidRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "ChameleonKidRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "RockHoundRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "RockHoundRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "BlusterCritterRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "BlusterCritterRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "QuickCrabRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "QuickCrabRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "KingCrabRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "KingCrabRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "SparseGridRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "SparseGridRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "junit" depends = "compile">
+			<junit fork = "true" haltonfailure = "true" printsummary = "true" showoutput = "true">
+				<classpath refid = "compile.path"/>
+				<test name = "HelloWorldTest"/>
+			</junit>
+		</target>
+
+</project>
+
+	

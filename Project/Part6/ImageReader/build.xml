@@ -1,0 +1,29 @@
+<?xml version= "1.0"?>
+    <project name = "Test" basedir = "." default = "ImageReaderRunner">
+    	<path id = "compile.path">
+    		<fileset dir = ".">
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    		<pathelement path = "."/>
+    	</path>
+
+    	<target name = "compile">
+    		<javac srcdir = "." destdir = "." classpathref = "compile.path"/>
+    	</target>
+
+		<target name = "ImageReaderRunner" depends = "compile">
+			<java fork = "true" failonerror = "yes" classname = "ImageReaderRunner">
+				<classpath refid = "compile.path"/>
+			</java>
+		</target>
+
+		<target name = "ImplementTest" depends = "compile">
+			<junit fork = "true" haltonfailure = "true" printsummary = "true" showoutput = "true">
+				<classpath refid = "compile.path"/>
+				<test name = "ImplementTest"/>
+			</junit>
+		</target>
+
+</project>
+
+	

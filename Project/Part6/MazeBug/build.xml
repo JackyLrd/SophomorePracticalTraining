@@ -1,0 +1,55 @@
+<?xml version= "1.0"?>
+    <project name = "Test" basedir = "." default = "MazeBugRunner">
+    	<path id = "compile.path">
+    		<fileset dir = "./info/gridworld/maze">
+    			<include name = "**/*.java"/>
+    		</fileset>
+    		<fileset dir = "./lib">
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    	</path>
+
+    	<path id = "run.path">
+    		<fileset dir = "./build">
+    			<include name = "**/*.class"/>
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    		<fileset dir = "./lib">
+    			<include name = "**/*.class"/>
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    	</path>
+
+    	<target name = "clean">
+    		<delete dir = "build"/>
+    	</target>
+
+    	<target name = "compile" depends = "clean">
+    		<mkdir dir = "build"/>
+    		<javac srcdir = "./info/gridworld/maze" destdir = "./build" classpathref = "compile.path"/>
+    	</target>
+
+    	<target name = "jar" depends = "compile">
+	    	<jar destfile = "./build/gridworld.jar" basedir = "./build/">
+	    		<manifest>
+	    			<attribute name = "Main-Class" value = "info.gridworld.maze.MazeBugRunner"/>
+	    		</manifest>
+	    	</jar>
+    	</target>
+
+		<target name = "MazeBugRunner" depends = "jar">
+			<java fork = "true" failonerror = "yes" classname = "info.gridworld.maze.MazeBugRunner">
+				<classpath refid = "run.path"/>
+			</java>
+		</target>
+
+		<target name = "ImplementTest" depends = "compile">
+			<junit fork = "true" haltonfailure = "true" printsummary = "true" showoutput = "true">
+				<classpath refid = "compile.path"/>
+				<test name = "ImplementTest"/>
+			</junit>
+		</target>
+
+</project>
+
+	

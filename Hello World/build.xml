@@ -1,0 +1,42 @@
+<?xml version= "1.0"?>
+    <project name = "Test" basedir = "." default = "junit">
+    	<property name = "src.dir" value = "src"/>
+    	<property name = "test.dir" value = "test"/>
+    	<property name = "war.dir" value = "war"/>
+    	<property name = "lib.dir" value = "lib"/>
+    	<property name = "class.dir" value = "${war.dir}/classes"/>
+    	<path id = "compile.path">
+    		<fileset dir = "${lib.dir}">
+    			<include name = "**/*.jar"/>
+    		</fileset>
+    		<pathelement path = "${class.dir}"/>
+    	</path>
+
+    	<target name = "init">
+    		<mkdir dir = "${war.dir}"/>
+    		<mkdir dir = "${class.dir}"/>
+    	</target>
+
+    	<target name = "compile" depends = "init">
+    		<javac srcdir = "${src.dir}" destdir = "${class.dir}" classpathref = "compile.path"/>
+    		<javac srcdir = "${test.dir}" destdir = "${class.dir}" classpathref = "compile.path"/>
+    	</target>
+
+		<target name = "Helloworld">
+			<java fork = "true" failonerror = "yes" classname = "HelloWorld"/>
+		</target>
+
+		<target name = "junit" depends = "compile">
+			<junit fork = "true" haltonfailure = "true" printsummary = "true" showoutput = "true">
+				<classpath refid = "compile.path"/>
+				<test name = "HelloWorldTest"/>
+			</junit>
+		</target>
+
+		<target name = "clean">
+    		<delete dir = "${class.dir}"/>
+    	</target>
+
+</project>
+
+	
